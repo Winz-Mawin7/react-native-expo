@@ -1,21 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { SafeAreaView, StatusBar } from "react-native";
+import * as eva from "@eva-design/eva";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
+
+// import NetworkConnectionContext from "./src/services/networkService";
+import { Network } from "./src/services/network.service";
+import RoleMenuStack from "./src/navigation";
 
 export default function App() {
+  const networkContext = Network.useNetwork();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <IconRegistry icons={EvaIconsPack} />
+      <StatusBar />
+      <SafeAreaView style={{ flex: 1 }}>
+        {/* <NetworkConnectionContext>
+					<RoleMenuStack />
+				</NetworkConnectionContext>  */}
+        <Network.Context.Provider value={networkContext}>
+          <RoleMenuStack />
+        </Network.Context.Provider>
+      </SafeAreaView>
+    </ApplicationProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

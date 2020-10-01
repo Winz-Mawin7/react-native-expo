@@ -1,13 +1,7 @@
 import React from "react";
-import { ImageURISource } from "react-native";
 import { AvatarStack } from "../components/AvatarStackComponent";
 
-interface ISource {
-  name: string;
-  photo?: ImageURISource;
-}
-
-const stacks: Array<ISource> = [
+const stacks = [
   {
     name: "A",
     photo: require("../assets/image-profile-1.jpg"),

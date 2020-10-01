@@ -1,18 +1,33 @@
-import React from "react";
+import React, { ReactElement } from "react";
+import { ImageSourcePropType, StyleSheet } from "react-native";
 import { Avatar, Layout, Text } from "@ui-kitten/components";
-import { StyleSheet } from "react-native";
+import { EvaSize } from "@ui-kitten/components/devsupport";
 
+const DEFAULT_AVATAR = {
+  uri: "https://app.nextschool.io/img/default/student.png",
+};
 const DEFAULT_SIZE = "medium";
+const SIZE_TINY = 20;
+const SIZE_SMALL = 26;
+const SIZE_MEDIUM = 38;
+const SIZE_LARGE = 44;
+const SIZE_GIANT = 52;
 
-export const AvatarStack = ({ stacks, max = stacks.length, size = DEFAULT_SIZE }) => {
+interface AvatarStackProp {
+  stacks: Array<{ photo: ImageSourcePropType }>;
+  max?: number;
+  size?: EvaSize;
+}
+
+export const AvatarStack = ({ stacks, max = stacks.length, size = DEFAULT_SIZE }: AvatarStackProp): ReactElement => {
   const render = [];
   const circleStyle = checkStyleCircle(size);
 
-  for (let i = 0; i < max && i < stacks.length; i++) {
+  for (let index = 0; index < max && index < stacks.length; index++) {
     render.push(
       <Avatar
-        source={stacks[i].photo ? stacks[i].photo : require("../assets/image-profile-3.jpg")} // android not render if null or undefined
-        key={i}
+        source={stacks[index].photo ? stacks[index].photo : DEFAULT_AVATAR} // android not render if null or undefined
+        key={index}
         style={styles.avatarStyle}
         size={size}
       />
@@ -23,7 +38,7 @@ export const AvatarStack = ({ stacks, max = stacks.length, size = DEFAULT_SIZE }
   const diff = stacks.length - max;
   if (diff > 0)
     render.push(
-      <Layout key={++max} style={circleStyle}>
+      <Layout key={++max} style={[styles.circle, circleStyle]}>
         <Text style={styles.textInCircle}>{`+${diff}`}</Text>
       </Layout>
     );
@@ -31,7 +46,7 @@ export const AvatarStack = ({ stacks, max = stacks.length, size = DEFAULT_SIZE }
   return <Layout style={styles.container}>{render}</Layout>;
 };
 
-function checkStyleCircle(size: string) {
+const checkStyleCircle = (size: string) => {
   switch (size) {
     case "tiny":
       return styles.circleTiny;
@@ -46,7 +61,7 @@ function checkStyleCircle(size: string) {
     default:
       return styles.circleMedium;
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -55,55 +70,42 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   avatarStyle: {
-    marginHorizontal: -5,
+    marginLeft: -10,
     marginVertical: 2,
     borderWidth: 2,
     borderColor: "white",
   },
-  circleTiny: {
+  circle: {
     justifyContent: "center",
     alignSelf: "center",
-    backgroundColor: "rgb(200,200,200)",
-    borderRadius: 20 / 2,
-    width: 20,
-    height: 20,
+    backgroundColor: "rgb(211,211,211)",
+    marginLeft: -10,
     zIndex: -1,
+  },
+  circleTiny: {
+    borderRadius: SIZE_TINY / 2,
+    width: SIZE_TINY,
+    height: SIZE_TINY,
   },
   circleSmall: {
-    justifyContent: "center",
-    alignSelf: "center",
-    backgroundColor: "rgb(200,200,200)",
-    borderRadius: 26 / 2,
-    width: 26,
-    height: 26,
-    zIndex: -1,
+    borderRadius: SIZE_SMALL / 2,
+    width: SIZE_SMALL,
+    height: SIZE_SMALL,
   },
   circleMedium: {
-    justifyContent: "center",
-    alignSelf: "center",
-    backgroundColor: "rgb(200,200,200)",
-    borderRadius: 38 / 2,
-    width: 38,
-    height: 38,
-    zIndex: -1,
+    borderRadius: SIZE_MEDIUM / 2,
+    width: SIZE_MEDIUM,
+    height: SIZE_MEDIUM,
   },
   circleLarge: {
-    justifyContent: "center",
-    alignSelf: "center",
-    backgroundColor: "rgb(200,200,200)",
-    borderRadius: 44 / 2,
-    width: 44,
-    height: 44,
-    zIndex: -1,
+    borderRadius: SIZE_LARGE / 2,
+    width: SIZE_LARGE,
+    height: SIZE_LARGE,
   },
   circleGiant: {
-    justifyContent: "center",
-    alignSelf: "center",
-    backgroundColor: "rgb(200,200,200)",
-    borderRadius: 52 / 2,
-    width: 52,
-    height: 52,
-    zIndex: -1,
+    borderRadius: SIZE_GIANT / 2,
+    width: SIZE_GIANT,
+    height: SIZE_GIANT,
   },
   textInCircle: {
     textAlign: "center",

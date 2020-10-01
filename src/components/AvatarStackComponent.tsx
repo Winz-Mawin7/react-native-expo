@@ -82,9 +82,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
     backgroundColor: "rgb(200,200,200)",
-    borderRadius: 34 / 2,
-    width: 34,
-    height: 34,
+    borderRadius: 38 / 2,
+    width: 38,
+    height: 38,
     zIndex: -1,
   },
   circleLarge: {

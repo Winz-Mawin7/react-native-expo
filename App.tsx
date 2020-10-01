@@ -12,7 +12,7 @@ export default function App() {
   const networkContext = Network.useNetwork();
 
   return (
-    <ApplicationProvider {...eva} theme={eva.dark}>
+    <ApplicationProvider {...eva} theme={eva.light}>
       <IconRegistry icons={EvaIconsPack} />
       <StatusBar />
       <SafeAreaView style={{ flex: 1 }}>

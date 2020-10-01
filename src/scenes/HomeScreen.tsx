@@ -6,7 +6,7 @@ const StudentIcon = (props) => <Icon {...props} name="person" />;
 const TeacherIcon = (props) => <Icon {...props} name="book-open" />;
 const ForwardIcon = (props) => <Icon {...props} name="arrow-ios-forward" />;
 
-export default function HomeComponent({ navigation }) {
+export default ({ navigation }) => {
   return (
     <>
       <Menu>
@@ -31,4 +31,4 @@ export default function HomeComponent({ navigation }) {
       </Menu>
     </>
   );
-}
+};

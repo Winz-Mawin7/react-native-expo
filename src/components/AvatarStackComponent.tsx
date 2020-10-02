@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 import { Avatar, Layout, Text } from "@ui-kitten/components";
 import { EvaSize } from "@ui-kitten/components/devsupport";
 import { IStack } from "../core/mockup/stacks.data";
+import { v4 as uuidv4 } from "uuid";
 
 const DEFAULT_AVATAR = {
   uri: "https://app.nextschool.io/img/default/student.png",
@@ -24,14 +25,15 @@ export const AvatarStack = ({ stacks, max = stacks.length, size = DEFAULT_SIZE }
   const circleStyle = checkStyleCircle(size);
 
   const render = stacks.map(
-    (stack, index) => index < max && <Avatar source={stack.photo ? stack.photo : DEFAULT_AVATAR} key={index} style={styles.avatarStyle} size={size} />
+    (stack, index) =>
+      index < max && <Avatar source={stack.photo ? stack.photo : DEFAULT_AVATAR} key={uuidv4()} style={styles.avatarStyle} size={size} />
   );
 
   // push different from max to render
   const diff = stacks.length - max;
   if (diff > 0)
     render.push(
-      <Layout key={++max} style={[styles.circle, circleStyle]}>
+      <Layout key={uuidv4()} style={[styles.circle, circleStyle]}>
         <Text style={styles.textInCircle}>{`+${diff}`}</Text>
       </Layout>
     );

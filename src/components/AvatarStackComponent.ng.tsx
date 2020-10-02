@@ -1,6 +1,7 @@
 import React from "react";
 import { ImageSourcePropType } from "react-native";
 import { Avatar, Layout, Text, useStyleSheet } from "@ui-kitten/components";
+import { v4 as uuidv4 } from "uuid";
 
 const DEFAULT_AVATAR = {
   uri: "https://app.nextschool.io/img/default/student.png",
@@ -49,7 +50,7 @@ export const AvatarStack = ({ stacks, max = stacks.length, size = DEFAULT_SIZE }
     render.push(
       <Avatar
         source={stacks[index].photo ? stacks[index].photo : DEFAULT_AVATAR} // android not render if null or undefined
-        key={index}
+        key={uuidv4()}
         style={styles.avatarStyle}
         size={size}
       />
@@ -60,7 +61,7 @@ export const AvatarStack = ({ stacks, max = stacks.length, size = DEFAULT_SIZE }
   const diff = stacks.length - max;
   if (diff > 0)
     render.push(
-      <Layout key={++max} style={[styles.circle, circleStyle]}>
+      <Layout style={[styles.circle, circleStyle]}>
         <Text style={styles.textInCircle}>{`+${diff}`}</Text>
       </Layout>
     );

@@ -1,7 +1,8 @@
 import React from "react";
 import { AvatarStack } from "../components/AvatarStackComponent";
 import { ScrollView } from "react-native";
-import { Button, Divider, Text } from "@ui-kitten/components";
+import { Button, Text } from "@ui-kitten/components";
+import { v4 as uuidv4 } from "uuid";
 
 import ModalClockin from "../components/ModalClockin";
 
@@ -14,16 +15,16 @@ export default () => {
       <Text>Student Screen</Text>
       <AvatarStack stacks={stacks} />
 
-      {students.studyStatList.map((photo, index) =>
+      {students.studyStatList.map((photo) =>
         photo.faceIn && photo.faceOut ? (
-          <>
-            <ClockinButton key={index} photo={photo.faceIn} title="Show Image FaceIn" />
-            <ClockinButton key={++index} photo={photo.faceOut} title="Show Image FaceOut" />
-          </>
+          <React.Fragment key={uuidv4()}>
+            <ClockinButton key={uuidv4()} photo={photo.faceIn} title="Show Image FaceIn" />
+            <ClockinButton key={uuidv4()} photo={photo.faceOut} title="Show Image FaceOut" />
+          </React.Fragment>
         ) : photo.faceIn ? (
-          <ClockinButton status="warning" key={index} photo={photo.faceIn} title="Show Image FaceIn Only" />
+          <ClockinButton key={uuidv4()} status="warning" photo={photo.faceIn} title="Show Image FaceIn Only" />
         ) : photo.faceOut ? (
-          <ClockinButton status="danger" key={index} photo={photo.faceOut} title="Show Image FaceOut Only" />
+          <ClockinButton key={uuidv4()} status="danger" photo={photo.faceOut} title="Show Image FaceOut Only" />
         ) : null
       )}
     </ScrollView>

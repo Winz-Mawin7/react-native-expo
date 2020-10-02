@@ -15,18 +15,18 @@ export const ModalBackdrop = () => {
     <View>
       <Button onPress={() => setVisible(true)}>TOGGLE MODAL</Button>
 
-      {/* <Modal visible={visible} backdropStyle={styles.backdrop} onBackdropPress={() => setVisible(false)}> */}
-      <Card status="success">
-        <LottieView source={confirmation} autoPlay loop={false} style={styles.animation} />
-        <Text category="h6" style={{ textAlign: "center" }}>
-          Success ❗️
-        </Text>
-        <AvatarStack stacks={stacks} max={4} />
-        <Button style={styles.buttonStyle} onPress={() => setVisible(false)}>
-          Thanks
-        </Button>
-      </Card>
-      {/* </Modal> */}
+      <Modal visible={visible} backdropStyle={styles.backdrop} onBackdropPress={() => setVisible(false)}>
+        <Card status="success">
+          <LottieView source={confirmation} autoPlay loop={false} style={styles.animation} />
+          <Text category="h6" style={{ textAlign: "center" }}>
+            Success ❗️
+          </Text>
+          <AvatarStack stacks={stacks} max={4} />
+          <Button style={styles.buttonStyle} onPress={() => setVisible(false)}>
+            Thanks
+          </Button>
+        </Card>
+      </Modal>
     </View>
   );
 };

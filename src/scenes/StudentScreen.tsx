@@ -9,7 +9,7 @@ import ModalClockin from "../components/ModalClockin";
 import { stacks } from "../core/mockup/stacks.data";
 import { students } from "../core/mockup/clockin.data";
 
-export default () => {
+export default function () {
   return (
     <ScrollView>
       <Text>Student Screen</Text>
@@ -29,7 +29,7 @@ export default () => {
       )}
     </ScrollView>
   );
-};
+}
 
 const ClockinButton = ({ photo, title, status = "primary" }) => {
   const [visible, setVisible] = React.useState(false);

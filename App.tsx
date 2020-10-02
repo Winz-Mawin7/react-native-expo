@@ -6,7 +6,7 @@ import { EvaIconsPack } from "@ui-kitten/eva-icons";
 
 // import NetworkConnectionContext from "./src/services/networkService";
 import { Network } from "./src/services/network.service";
-import RoleMenuStack from "./src/navigation";
+import { AppNavigator } from "./src/navigation";
 
 export default function App() {
   const networkContext = Network.useNetwork();
@@ -20,7 +20,7 @@ export default function App() {
 					<RoleMenuStack />
 				</NetworkConnectionContext>  */}
         <Network.Context.Provider value={networkContext}>
-          <RoleMenuStack />
+          <AppNavigator />
         </Network.Context.Provider>
       </SafeAreaView>
     </ApplicationProvider>

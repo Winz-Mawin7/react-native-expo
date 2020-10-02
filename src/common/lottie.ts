@@ -11,4 +11,6 @@ interface AnimationObject {
   layers: any[];
 }
 
-export const confirmation: string | AnimationObject | { uri: string } = require("../assets/lottie/confirmation.json");
+type LottieSourcePropType = string | AnimationObject | { uri: string };
+
+export const confirmation: LottieSourcePropType = require("../assets/lottie/confirmation.json");

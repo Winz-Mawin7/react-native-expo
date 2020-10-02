@@ -1,7 +1,8 @@
 import React, { ReactElement } from "react";
-import { ImageSourcePropType, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { Avatar, Layout, Text } from "@ui-kitten/components";
 import { EvaSize } from "@ui-kitten/components/devsupport";
+import { IStack } from "../core/mockup/stacks.data";
 
 const DEFAULT_AVATAR = {
   uri: "https://app.nextschool.io/img/default/student.png",
@@ -14,25 +15,17 @@ const SIZE_LARGE = 44;
 const SIZE_GIANT = 52;
 
 interface AvatarStackProp {
-  stacks: Array<{ photo: ImageSourcePropType }>;
+  stacks: Array<IStack>;
   max?: number;
   size?: EvaSize;
 }
 
 export const AvatarStack = ({ stacks, max = stacks.length, size = DEFAULT_SIZE }: AvatarStackProp): ReactElement => {
-  const render = [];
   const circleStyle = checkStyleCircle(size);
 
-  for (let index = 0; index < max && index < stacks.length; index++) {
-    render.push(
-      <Avatar
-        source={stacks[index].photo ? stacks[index].photo : DEFAULT_AVATAR} // android not render if null or undefined
-        key={index}
-        style={styles.avatarStyle}
-        size={size}
-      />
-    );
-  }
+  const render = stacks.map(
+    (stack, index) => index < max && <Avatar source={stack.photo ? stack.photo : DEFAULT_AVATAR} key={index} style={styles.avatarStyle} size={size} />
+  );
 
   // push different from max to render
   const diff = stacks.length - max;

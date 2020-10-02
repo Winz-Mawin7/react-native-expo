@@ -1,50 +1,48 @@
 import React from "react";
 import { AvatarStack } from "../components/AvatarStackComponent";
+import { ScrollView } from "react-native";
+import { Button, Divider, Text } from "@ui-kitten/components";
 
-const stacks = [
-  {
-    name: "A",
-    photo: require("../assets/image-profile-1.jpg"),
-  },
-  {
-    name: "C",
-    photo: require("../assets/image-profile-2.jpg"),
-  },
-  {
-    name: "C",
-    photo: require("../assets/image-profile-4.jpg"),
-  },
-  { name: "B", photo: { uri: "https://img.icons8.com/officel/2x/person-male.png" } },
-  {
-    name: "C",
-    photo: { uri: "https://www.clipartkey.com/mpngs/m/174-1746540_stock-person-female-icon-free-female-person-icon.png" },
-  },
-  {
-    name: "C",
-    photo: null,
-  },
-  {
-    name: "C",
-    photo: undefined,
-  },
-  {
-    name: "C",
-    photo: null,
-  },
-  {
-    name: "C",
-    photo: undefined,
-  },
-  {
-    name: "C",
-    photo: null,
-  },
-  {
-    name: "C",
-    photo: undefined,
-  },
-];
+import ModalClockin from "../components/ModalClockin";
+
+import { stacks } from "../core/mockup/stacks.data";
+import { students } from "../core/mockup/clockin.data";
 
 export default () => {
-  return <AvatarStack stacks={stacks} max={7} />;
+  return (
+    <ScrollView>
+      <Text>Student Screen</Text>
+      <AvatarStack stacks={stacks} />
+
+      {students.studyStatList.map((photo, index) =>
+        photo.faceIn && photo.faceOut ? (
+          <>
+            <ClockinButton key={index} photo={photo.faceIn} title="Show Image FaceIn" />
+            <ClockinButton key={++index} photo={photo.faceOut} title="Show Image FaceOut" />
+          </>
+        ) : photo.faceIn ? (
+          <ClockinButton status="warning" key={index} photo={photo.faceIn} title="Show Image FaceIn Only" />
+        ) : photo.faceOut ? (
+          <ClockinButton status="danger" key={index} photo={photo.faceOut} title="Show Image FaceOut Only" />
+        ) : null
+      )}
+    </ScrollView>
+  );
+};
+
+const ClockinButton = ({ photo, title, status = "primary" }) => {
+  const [visible, setVisible] = React.useState(false);
+
+  const toggleModal = () => {
+    setVisible(!visible);
+  };
+
+  return (
+    <>
+      <Button status={status} onPress={toggleModal}>
+        {title}
+      </Button>
+      <ModalClockin visible={visible} toggleModal={toggleModal} photo={photo} />
+    </>
+  );
 };

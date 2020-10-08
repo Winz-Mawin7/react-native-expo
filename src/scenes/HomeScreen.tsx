@@ -1,12 +1,13 @@
 import React from "react";
 import { Icon, Menu, MenuItem } from "@ui-kitten/components";
+import { StackParamProps } from "../navigation/StackParamList";
 
 const ParentIcon = (props) => <Icon {...props} name="people" />;
 const StudentIcon = (props) => <Icon {...props} name="person" />;
 const TeacherIcon = (props) => <Icon {...props} name="book-open" />;
 const ForwardIcon = (props) => <Icon {...props} name="arrow-ios-forward" />;
 
-export default function ({ navigation }) {
+export default function ({ navigation, route }: StackParamProps<"Home">) {
   return (
     <>
       <Menu>

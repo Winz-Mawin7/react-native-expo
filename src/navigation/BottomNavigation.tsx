@@ -1,16 +1,16 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { BottomNavigation, BottomNavigationTab, Icon } from "@ui-kitten/components";
-// import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import ComponentScreen from "../scenes/ComponentScreen";
-import { HomeRoleMenuStack } from "./HomeNavigation";
+import { HomeRoleMenuStack } from "./HomeStackNavigation";
+import { TabParamList, TabParamProps } from "./TabParamList";
 
 const HomeIcon = (props) => <Icon {...props} name="home" />;
 const StarIcon = (props) => <Icon {...props} name="star" />;
 
-const { Navigator, Screen } = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabParamList>();
 
 const BottomNavigator = ({ navigation, state }) => {
   return (
@@ -22,10 +22,10 @@ const BottomNavigator = ({ navigation, state }) => {
 };
 
 export const BottomTabNavigator = () => (
-  <Navigator tabBar={(props) => <BottomNavigator {...props} />}>
-    <Screen name="Home" component={HomeRoleMenuStack} />
-    <Screen name="Component" component={ComponentScreen} />
-  </Navigator>
+  <Tab.Navigator tabBar={(props) => <BottomNavigator {...props} />}>
+    <Tab.Screen name="Home" component={HomeRoleMenuStack} />
+    <Tab.Screen name="Component" component={ComponentScreen} />
+  </Tab.Navigator>
 );
 
 const styles = StyleSheet.create({

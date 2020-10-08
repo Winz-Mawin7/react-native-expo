@@ -4,9 +4,8 @@ import { View, StyleSheet, Image } from "react-native";
 
 interface ModalClockinPropsType {
   visible: boolean;
-  faceIn?: string | null;
-  faceOut?: string | null;
-  toggleModal: () => void;
+  photo: string | null;
+  toggleModal: () => void; // send from Student Screen
 }
 
 export default function ModalClockin({ visible, toggleModal, photo }: ModalClockinPropsType): React.ReactElement {

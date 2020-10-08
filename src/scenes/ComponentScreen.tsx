@@ -1,10 +1,25 @@
+import { Layout, Text } from "@ui-kitten/components";
 import React from "react";
-import { View, Text } from "react-native";
+import { AvatarStack } from "../components/AvatarStackComponent";
 
-export default function ComponentScreen() {
+import { stacks } from "../core/mockup/stacks.data";
+import { ModalBackdrop } from "../components/ModalBackdropComponent";
+import { StyleSheet } from "react-native";
+import { TabParamProps } from "../navigation/TabParamList";
+
+export default function ({ navigation, route }: TabParamProps<"Component">) {
   return (
-    <View>
-      <Text>Component Screen</Text>
-    </View>
+    <Layout style={styles.container}>
+      <Text>Stack Component</Text>
+      <AvatarStack stacks={stacks} />
+      <AvatarStack stacks={stacks} max={5} />
+
+      <Text>Modal Backdrop</Text>
+      <ModalBackdrop />
+    </Layout>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { alignItems: "center", padding: 20 },
+});

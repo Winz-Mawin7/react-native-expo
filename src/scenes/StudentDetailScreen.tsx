@@ -14,9 +14,9 @@ export default function StudentDetailScreen({ navigation, route }: StackParamPro
     <Layout>
       <Image source={photo} style={{ flexDirection: 'row', alignSelf: 'center', width: 200, height: 200, borderRadius: 200 / 2 }} />
       <Text style={{ alignSelf: 'center', fontSize: 20, paddingTop: 10 }}>{name}</Text>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 30, paddingRight: 10, paddingTop: 30 }}>
-        <Text>Processing</Text>
-        <Text>Achieve</Text>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 20, paddingRight: 8, paddingTop: 30 }}>
+        <Text>Courses</Text>
+        <Text>Process</Text>
       </View>
     </Layout>
   );
@@ -43,7 +43,7 @@ export default function StudentDetailScreen({ navigation, route }: StackParamPro
   };
 
   return (
-    <Layout style={{ paddingTop: 20, paddingHorizontal: 20 }}>
+    <Layout style={{ paddingTop: 20, paddingLeft: 10, paddingRight: 20 }}>
       <List
         ListHeaderComponent={() => <Header />}
         data={courses}

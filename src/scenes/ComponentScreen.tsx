@@ -2,7 +2,7 @@ import { Layout, Text } from '@ui-kitten/components';
 import React from 'react';
 import { AvatarStack } from '../components/AvatarStackComponent';
 
-import { stacks } from '../core/mockup/stacks.data';
+import { stacks } from '../mockup/stacks.data';
 import { ModalBackdrop } from '../components/ModalBackdropComponent';
 import { StyleSheet, View } from 'react-native';
 import { TabParamProps } from '../navigation/TabParamList';

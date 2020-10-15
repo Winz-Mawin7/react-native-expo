@@ -3,7 +3,7 @@ import { Divider, Icon, Layout, List, ListItem, Text } from '@ui-kitten/componen
 import React from 'react';
 import { StackParamProps } from '../navigation/StackParamList';
 
-import { child } from '../core/mockup/child.data';
+import { child } from '../mockup/child.data';
 
 export default function ({ navigation, route }: StackParamProps<'Parent'>) {
   return (

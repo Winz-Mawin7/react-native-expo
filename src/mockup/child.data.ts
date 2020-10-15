@@ -8,7 +8,7 @@ export const child = [
       { subject: 'Chinese For Nursery', spendTime: 2, totalTime: 10 },
       { subject: 'English for Nursery', spendTime: 9, totalTime: 10 },
     ],
-    achieve: ['English for Beginner', 'Chinese for Beginner'],
+    achieves: ['English for Beginner', 'Chinese for Beginner'],
   },
   {
     name: 'Mia Wong',
@@ -17,7 +17,7 @@ export const child = [
       { subject: 'Chinese For Nursery', spendTime: 7, totalTime: 10 },
       { subject: 'English for Nursery', spendTime: 5, totalTime: 10 },
     ],
-    achieve: ['English for Beginner', 'Chinese for Beginner'],
+    achieves: ['English for Beginner', 'Chinese for Beginner'],
   },
   {
     name: 'Salome Simoes',
@@ -26,6 +26,6 @@ export const child = [
       { subject: 'Chinese For Nursery', spendTime: 7, totalTime: 10 },
       { subject: 'English for Nursery', spendTime: 5, totalTime: 10 },
     ],
-    achieve: ['English for Beginner', 'Chinese for Beginner'],
+    achieves: ['English for Beginner', 'Chinese for Beginner'],
   },
 ];

@@ -1,6 +1,6 @@
-import { RouteProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { ImageSourcePropType } from "react-native";
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { ImageSourcePropType } from 'react-native';
 
 export type StackParamList = {
   Home: undefined;
@@ -12,7 +12,7 @@ export type StackParamList = {
     name: string;
     photo: ImageSourcePropType;
     courses: Array<{ subject: string; spendTime: number; totalTime: number }>;
-    achieve: Array<string>;
+    achieves: Array<string>;
   };
 };
 

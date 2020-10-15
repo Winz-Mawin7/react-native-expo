@@ -21,7 +21,7 @@ const ChildList = ({ child }) => {
     <ListItem
       title={item.name}
       accessoryLeft={(props) => <Icon {...props} name='person' />}
-      onPress={() => navigation.navigate('StudentDetail', { name: item.name, photo: item.photo, courses: item.courses, achieve: item.achieve })}
+      onPress={() => navigation.navigate('StudentDetail', { name: item.name, photo: item.photo, courses: item.courses, achieves: item.achieves })}
     />
   );
 

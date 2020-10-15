@@ -1,27 +1,19 @@
 import { Divider, Icon, Layout, List, ListItem, Text } from '@ui-kitten/components';
 import React from 'react';
-import { Image, View } from 'react-native';
+
 import { StackParamProps } from '../navigation/StackParamList';
+import { AvatarProfile } from '../components/AvatarProfile';
+import { AchieveList } from '../components/AchieveList';
 import { ProgressCircleComponent } from '../components/ProgressCircleComponent';
+import { View } from 'react-native';
 
 export default function StudentDetailScreen({ navigation, route }: StackParamProps<'StudentDetail'>) {
   const name = route.params.name;
   const photo = route.params.photo;
   const courses = route.params.courses;
-  const achieve = route.params.achieve;
+  const achieves = route.params.achieves;
 
-  const Header = () => (
-    <Layout>
-      <Image source={photo} style={{ flexDirection: 'row', alignSelf: 'center', width: 200, height: 200, borderRadius: 200 / 2 }} />
-      <Text style={{ alignSelf: 'center', fontSize: 20, paddingTop: 10 }}>{name}</Text>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 20, paddingRight: 8, paddingTop: 30 }}>
-        <Text>Courses</Text>
-        <Text>Process</Text>
-      </View>
-    </Layout>
-  );
-
-  const BodyCourseList = ({ item }) => (
+  const CourseList = ({ item }) => (
     <ListItem
       accessoryLeft={(props) => <Icon {...props} name='book-open-outline' />}
       title={item.subject}
@@ -30,28 +22,33 @@ export default function StudentDetailScreen({ navigation, route }: StackParamPro
     />
   );
 
-  const FooterAchieveList = () => {
-    const renderItem = ({ item }) => (
-      <ListItem
-        accessoryLeft={(props) => <Icon {...props} name='star' />}
-        title={item}
-        accessoryRight={(props) => <Icon {...props} style={{ width: 45, height: 45, marginRight: 5 }} name='checkmark-circle-2' fill='rgb(40,180,50)' />}
-      />
-    );
-
-    return <List data={achieve} renderItem={renderItem} ItemSeparatorComponent={Divider} />;
-  };
-
   return (
     <Layout style={{ paddingTop: 20, paddingLeft: 10, paddingRight: 20 }}>
       <List
-        ListHeaderComponent={() => <Header />}
+        ListHeaderComponent={() => (
+          <Layout>
+            <AvatarProfile photo={photo} name={name} />
+            <Title leftTitle='Courses' rightTitle='Process' />
+          </Layout>
+        )}
         data={courses}
-        renderItem={BodyCourseList}
+        renderItem={CourseList}
         ItemSeparatorComponent={Divider}
-        ListFooterComponent={() => <FooterAchieveList />}
+        ListFooterComponent={() => (
+          <Layout>
+            <Title leftTitle='Courses' rightTitle='Achieve' />
+            <AchieveList achieves={achieves} />
+          </Layout>
+        )}
         showsVerticalScrollIndicator={false}
       />
     </Layout>
   );
 }
+
+const Title = ({ leftTitle, rightTitle }) => (
+  <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 20, paddingRight: 8, paddingTop: 30 }}>
+    <Text>{leftTitle}</Text>
+    <Text>{rightTitle}</Text>
+  </View>
+);
